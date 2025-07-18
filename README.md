@@ -8,32 +8,40 @@ https://dados.fortaleza.ce.gov.br/dataset/dados_mobilidade_onibus_2015_gps_parad
 these data were made publicly available by **etufor** in partnership with the **fortaleza city hall** through the official open data portal:
 https://dados.fortaleza.ce.gov.br/
 
+## example outputs
 
-## 1. what can be an anomaly?
+### interactive anomaly map
+![interactive anomaly map](docs/anomaly_map.png)
+
+![speed distribution example](docs/speed_distribution.png)
+
+![trajectories and jumps example](docs/trajectories_and_jumps.png)
+
+## what can be an anomaly?
 
 - very high or negative speed (e.g., > 120 km/h or < 0)
 - zero speed for a long time while the bus is expected to be moving
 - coordinates outside the expected area (e.g., outside the city's geographic boundary)
 - sudden changes in direction or speed that don't make sense (e.g., 180º turn in 1 second)
 
-## 2. steps
+## steps
 
-### step 1: load and clean the data
+### 1: load and clean the data
 
 - read the csv file
 - handle missing or invalid values
 
-### step 2: basic analysis to find simple anomalies
+### 2: basic analysis to find simple anomalies
 
 - detect speeds outside the expected range
 - detect coordinates outside the city's bounding box
 
-### step 3: temporal and spatial analysis
+### 3: temporal and spatial analysis
 
 - for each bus, check for sudden jumps in position between consecutive records (using euclidean or haversine distance)
 - identify unusual speed patterns over time
 
-### step 4: machine learning (optional for advanced stages)
+### 4: machine learning (optional for advanced stages)
 
 - use anomaly detection models, such as:
   - isolation forest
@@ -41,7 +49,7 @@ https://dados.fortaleza.ce.gov.br/
   - neural network autoencoders to detect unusual data patterns
 
 
-## 3. how to run
+## how to run
 
 1. make sure you have Python 3.8+ installed.
 2. install the required dependencies:
@@ -65,13 +73,3 @@ https://dados.fortaleza.ce.gov.br/
    - `anomalies_detected.csv`
    - an interactive map: `anomaly_map.html`
 
-## 4. example outputs
-
-### speed distribution
-![speed distribution example](docs/speed_distribution.png)
-
-### trajectories and jumps
-![trajectories and jumps example](docs/trajectories_and_jumps.png)
-
-### interactive anomaly map
-![interactive anomaly map](docs/anomaly_map.png)
